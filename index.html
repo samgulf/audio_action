@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Audio Action – Coming Soon</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body { overflow-y: auto; }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-red-700 via-red-600 to-red-500 text-white flex flex-col relative">
+  <!-- Background Texture Overlay -->
+  <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.1),transparent_50%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.15),transparent_50%)]"></div>
+
+  <!-- Header -->
+  <header class="relative w-full border-b border-white/20 z-10">
+    <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 text-xl font-semibold tracking-tight">
+        <img src="images/audio_action_logo.jpg" alt="Audio Action Logo" class="w-16 h-16 object-contain" />
+        <span class="text-white text-2xl font-bold">Audio Action</span>
+      </a>
+      <nav class="hidden sm:flex items-center gap-6 text-sm text-white/80">
+        <a class="hover:text-white transition" href="#sites">Our Sites</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative isolate overflow-hidden z-10">
+    <div class="max-w-6xl mx-auto px-6 py-20 sm:py-28">
+      <p class="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs uppercase tracking-wider text-white/80">Coming Soon</p>
+      <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight">
+        A new <span class="bg-white text-red-600 px-2 rounded">audio website</span>
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-white/90">
+        Audio Action is a sister website to <a href="https://www.lancashireshorts.com" target="_blank" rel="noreferrer" class="font-semibold underline hover:text-black">Lancashire Shorts</a>.
+        Lancashire Shorts offers short audio plays (5–15 mins), professionally performed in a variety of genres.
+        Audio Action will offer longer plays, split into bite-sized chunks for ease and flexibility of listening.
+      </p>
+    </div>
+  </section>
+
+  <!-- Sites -->
+  <section id="sites" class="relative max-w-6xl mx-auto px-6 pb-20 z-10">
+    <h2 class="text-2xl sm:text-3xl font-bold">Get the best of both worlds</h2>
+    <div class="mt-8 grid sm:grid-cols-2 gap-6">
+      <a
+        href="https://www.lancashireshorts.com"
+        class="group rounded-3xl border border-white/20 bg-white/10 p-6 hover:bg-white/20 transition"
+        target="_blank" rel="noreferrer"
+      >
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <img src="images/lancashire_shorts_logo.jpg" alt="Lancashire Shorts Logo" class="w-24 h-24 object-contain" />
+            <h3 class="text-xl font-semibold">Lancashire Shorts</h3>
+          </div>
+          <span aria-hidden class="opacity-80 group-hover:opacity-100 transition">↗</span>
+        </div>
+        <p class="mt-2 text-white/90">Short audio plays (5–15 mins), professionally performed in a variety of genres.</p>
+        <p class="mt-4 text-sm text-white/70">www.lancashireshorts.com</p>
+      </a>
+      <a
+        href="https://www.audioaction.co.uk"
+        class="group rounded-3xl border border-white/20 bg-white/10 p-6 hover:bg-white/20 transition"
+        target="_blank" rel="noreferrer"
+      >
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <img src="images/audio_action_logo.jpg" alt="Audio Action Logo" class="w-24 h-24 object-contain" />
+            <h3 class="text-xl font-semibold">Audio Action</h3>
+          </div>
+          <span aria-hidden class="opacity-80 group-hover:opacity-100 transition">↗</span>
+        </div>
+        <p class="mt-2 text-white/90">Longer plays split into bite-sized chapters for flexible listening.</p>
+        <p class="mt-4 text-sm text-white/70">www.audioaction.co.uk</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="relative mt-auto border-t border-white/20 z-10">
+    <div class="max-w-6xl mx-auto px-6 py-10 flex items-center justify-center">
+      <p class="text-white/80 text-sm">© 2025 Audio Action. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
