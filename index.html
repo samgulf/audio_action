@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Audio Action – Coming Soon</title>
+  <title>Audio Action</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
     body { overflow-y: auto; }
@@ -29,7 +29,6 @@
   <!-- Hero -->
   <section class="relative isolate overflow-hidden z-10">
     <div class="max-w-6xl mx-auto px-6 py-20 sm:py-28">
-      <p class="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs uppercase tracking-wider text-white/80">Coming Soon</p>
       <h1 class="text-4xl sm:text-6xl font-extrabold leading-tight">
         A new <span class="bg-white text-red-600 px-2 rounded">audio website</span>
       </h1>
@@ -38,6 +37,45 @@
         Lancashire Shorts offers short audio plays (5–15 mins), professionally performed in a variety of genres.
         Audio Action will offer longer plays, split into bite-sized chunks for ease and flexibility of listening.
       </p>
+    </div>
+  </section>
+
+  <!-- Audio Plays -->
+  <section class="relative max-w-6xl mx-auto px-6 pb-20 z-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Series List -->
+      <div id="seriesList" class="md:col-span-1 space-y-4">
+        <!-- JS injects series here -->
+      </div>
+
+      <!-- Media Player -->
+      <div class="md:col-span-2 rounded-3xl border border-white/20 bg-white/10 p-6">
+        <div id="playerEmpty" class="text-white/70 text-center py-16">
+          Select an episode to start listening
+        </div>
+
+        <div id="player" class="hidden">
+          <h3 id="playerTitle" class="text-xl font-semibold mb-4"></h3>
+
+          <audio
+            id="audioPlayer"
+            controls
+            class="w-full mb-4"
+          >
+            Your browser does not support the audio element.
+          </audio>
+
+          <div class="flex justify-center">
+            <img
+              id="playerImage"
+              src=""
+              alt=""
+              class="max-w-full max-h-[70vh] object-contain rounded-xl bg-black/20"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -84,5 +122,97 @@
       <p class="text-white/80 text-sm">© 2025 Audio Action. All rights reserved.</p>
     </div>
   </footer>
+
+  <script>
+  const seriesData = [
+    {
+      name: "The Ribbleton Riddle",
+      description: "A comedy crime caper",
+      thumbnail: "images/The Ribbleton Riddle_thumbnail.png",
+      episodes: [
+        { number: 1, title: "Episode 1", image: "images/The Ribbleton Riddle Ep 1.png", audio: "audio/The Ribbleton Riddle Ep 1.mp3"},
+        { number: 2, title: "Episode 2", image: "images/The Ribbleton Riddle Ep 2.png", audio: "audio/The Ribbleton Riddle Ep 2.mp3" },
+        { number: 3, title: "Episode 3", image: "images/The Ribbleton Riddle Ep 3.png", audio: "audio/The Ribbleton Riddle Ep 3.mp3" },
+        { number: 4, title: "Episode 4", image: "images/The Ribbleton Riddle Ep 4.png", audio: "audio/The Ribbleton Riddle Ep 4.mp3" },                
+      ]
+    },
+    {
+      name: "Happy to Help",
+      description: "An identity crisis?",
+      thumbnail: "images/Happy to Help_thumbnail.png",
+      episodes: [
+        { number: 1, title: "Episode 1", image: "images/Happy to Help Ep 1.png", audio: "audio/Happy to Help Ep 1.mp3" },
+      ]
+    }
+  ];
+
+  const seriesList = document.getElementById("seriesList");
+  const player = document.getElementById("player");
+  const playerEmpty = document.getElementById("playerEmpty");
+  const playerImage = document.getElementById("playerImage");
+  const playerTitle = document.getElementById("playerTitle");
+  const audioPlayer = document.getElementById("audioPlayer");
+
+  seriesData.forEach((series, index) => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "rounded-2xl border border-white/20 bg-white/10";
+
+    const header = document.createElement("button");
+    header.className =
+      "w-full flex items-center gap-3 p-4 text-left hover:bg-white/10 transition";
+    header.innerHTML = `
+      <img
+        src="${series.thumbnail}"
+        class="w-14 h-14 object-cover rounded-lg flex-shrink-0"
+      />
+      <div class="flex flex-col">
+        <span class="font-semibold leading-tight">
+          ${series.name}
+        </span>
+        <span class="text-xs text-white/70 leading-tight">
+          ${series.description}
+        </span>
+      </div>
+    `;
+
+
+    const episodes = document.createElement("div");
+    episodes.className = "border-t border-white/20";
+
+    series.episodes.forEach(ep => {
+      const btn = document.createElement("button");
+      btn.className =
+        "w-full text-left px-4 py-3 text-sm hover:bg-white/10 transition";
+      btn.textContent = ep.title;
+
+    btn.addEventListener("click", () => {
+      playerImage.src = ep.image;
+      playerTitle.textContent = `${series.name} – ${ep.title}`;
+      
+      const src = encodeURI(ep.audio);
+      audioPlayer.pause();
+      audioPlayer.src = src;
+      audioPlayer.load();
+
+      playerEmpty.classList.add("hidden");
+      player.classList.remove("hidden");
+
+      audioPlayer.play();
+    });
+
+      episodes.appendChild(btn);
+    });
+
+    header.addEventListener("click", () => {
+      episodes.classList.toggle("hidden");
+    });
+
+    wrapper.appendChild(header);
+    wrapper.appendChild(episodes);
+    seriesList.appendChild(wrapper);
+  });
+  </script>
+
+
 </body>
 </html>
