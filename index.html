@@ -6,6 +6,7 @@
   <title>Audio Action</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
+    html { overflow-y: scroll; scrollbar-gutter: stable; }
     body { overflow-y: auto; }
   </style>
   <!-- Privacy-friendly analytics by Plausible -->
@@ -144,14 +145,6 @@
         { number: 4, title: "Episode 4", image: "images/The Ribbleton Riddle Ep 4.png", audio: "audio/The Ribbleton Riddle Ep 4.mp3" },                
       ]
     },
-    {
-      name: "Happy to Help",
-      description: "An identity crisis?",
-      thumbnail: "images/Happy to Help_thumbnail.png",
-      episodes: [
-        { number: 1, title: "Episode 1", image: "images/Happy to Help Ep 1.png", audio: "audio/Happy to Help Ep 1.mp3" },
-      ]
-    }
   ];
 
   const seriesList = document.getElementById("seriesList");
@@ -204,6 +197,13 @@
 
       playerEmpty.classList.add("hidden");
       player.classList.remove("hidden");
+      
+      // Send analytics to plausible
+      const audioFileName = decodeURIComponent(src.split('/').pop()).split('.').slice(0, -1).join('.');
+      if (window.plausible) {
+          console.log('Plausible event sent:', audioFileName);
+          plausible(audioFileName);
+      }
 
       audioPlayer.play();
     });
